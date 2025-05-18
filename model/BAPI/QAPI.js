@@ -58,7 +58,7 @@ class QQApi {
             })
             return subType
         } catch (error) {
-            logger.error('[BILI-PLUGIN]收集卡', error)
+            logger.error('[personal_bilili]收集卡', error)
             return null
         }
     }
@@ -107,7 +107,7 @@ class QQApi {
                 }
             }
         } catch (error) {
-            logger.error('[BILI-PLUGIN]收集卡', error)
+            logger.error('[personal_bilili]收集卡', error)
             return {
                 code: -1,
                 uin: uin,
@@ -156,7 +156,7 @@ class QQApi {
                 }
             }
         } catch (error) {
-            logger.error('[BILI-PLUGIN]收集卡分享', error)
+            logger.error('[personal_bilili]收集卡分享', error)
             return {
                 code: -1,
                 uin: uin,
@@ -210,7 +210,7 @@ class QQApi {
                 }
             }
         } catch (error) {
-            logger.error('[BILI-PLUGIN]普通日签卡', error)
+            logger.error('[personal_bilili]普通日签卡', error)
             return {
                 code: -1,
                 uin: uin,
@@ -264,7 +264,7 @@ class QQApi {
                 }
             }
         } catch (error) {
-            logger.error('[BILI-PLUGIN]晚安卡', error)
+            logger.error('[personal_bilili]晚安卡', error)
             return {
                 code: -1,
                 uin: uin,
@@ -310,7 +310,7 @@ class QQApi {
                 }
             }
         } catch (error) {
-            logger.error('[BILI-PLUGIN]每日Q崽', error)
+            logger.error('[personal_bilili]每日Q崽', error)
             return {
                 code: -1,
                 uin: uin,
@@ -355,7 +355,7 @@ class QQApi {
                 }
             }
         } catch (error) {
-            logger.error('[BILI-PLUGIN]心事罐签到', error)
+            logger.error('[personal_bilili]心事罐签到', error)
             return {
                 code: -1,
                 uin: uin,

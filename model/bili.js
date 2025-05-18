@@ -107,7 +107,7 @@ class Bili {
                 return `🌸${actionName}失败: ${json.message || json.msg || '未知错误'}`;
             }
         } catch (err) {
-            logger.error("[Bili-Plugin]用户关系操作失败:", err);
+            logger.error("[personal_bilili]用户关系操作失败:", err);
             return `用户关系操作请求失败，请检查日志输出`;
         }
     }
@@ -121,12 +121,12 @@ class Bili {
                 }
             });
             if (!response.ok) {
-                throw new Error(`[Bili-Plugin]获取节日信息请求出错: ${response.status}`);
+                throw new Error(`[personal_bilili]获取节日信息请求出错: ${response.status}`);
             }
             const data = await response.json();
             return data
         } catch (err) {
-            logger.error("[Bili-Plugin]获取米游社兑换码失败", err);
+            logger.error("[personal_bilili]获取米游社兑换码失败", err);
             return {
                 retcode: 0,
                 data: [],
@@ -165,7 +165,7 @@ class Bili {
                         const jsonData = JSON.parse(item.data);
                         content = jsonData.meta?.detail_1?.qqdocurl || jsonData
                     } catch (error) {
-                        logger.error('[Bili-Plugin]JSON 解析失败:', error);
+                        logger.error('[personal_bilili]JSON 解析失败:', error);
                         continue
                     }
                 }
@@ -189,7 +189,7 @@ class Bili {
                 }
             });
             if (!response.ok) {
-                throw new Error(`[Bili-Plugin]获取节日信息请求出错: ${response.status}`);
+                throw new Error(`[personal_bilili]获取节日信息请求出错: ${response.status}`);
             }
             const data = await response.json();
 
@@ -217,7 +217,7 @@ class Bili {
                 message.push("获取节日信息失败");
             }
         } catch (error) {
-            logger.error('[Bili-Plugin]获取节日信息请求出错', error);
+            logger.error('[personal_bilili]获取节日信息请求出错', error);
             message.push("🌸获取节日信息失败");
         }
         return message;
@@ -256,7 +256,7 @@ class Bili {
             const json = await response.json();
             return json
         } catch (err) {
-            logger.error("[Bili-Plugin]视频解析失败:", err);
+            logger.error("[personal_bilili]视频解析失败:", err);
             return null
         }
     }
@@ -279,7 +279,7 @@ class Bili {
             }
             return json.code === 0 ? `🌸分享直播间${roomid}成功` : `🌸分享直播间${roomid}失败:${json.message || json.msg || '未知错误'}`;
         } catch (err) {
-            logger.error("[Bili-Plugin]视频解析失败:", err);
+            logger.error("[personal_bilili]视频解析失败:", err);
             return `🌸分享直播间${roomid}失败: 未知错误`;
         }
     }
@@ -317,7 +317,7 @@ class Bili {
                     };
                 }
             } catch (err) {
-                logger.error("[Bili-Plugin]直播间点赞请求失败:", err);
+                logger.error("[personal_bilili]直播间点赞请求失败:", err);
                 return {
                     success: 0,
                     error: "请求异常"
@@ -339,7 +339,7 @@ class Bili {
                 await this.sleep(2000)
             }
         } catch (err) {
-            logger.error("[Bili-Plugin]直播间点赞流程异常:", err);
+            logger.error("[personal_bilili]直播间点赞流程异常:", err);
             return `🌸直播间点赞流程异常: ${err.message}`;
         }
         const successInfo = `🌸成功给直播间${roomid}点赞${successTotal}下`;
@@ -369,7 +369,7 @@ class Bili {
             const reply = action === 0 ? '点赞' : '取消点赞'
             return json.code === 0 ? `🌸${reply}视频成功` : `🌸${reply}视频失败:${json.message || json.msg || '未知错误'}`;
         } catch (err) {
-            logger.error("[Bili-Plugin]点赞操作失败:", err);
+            logger.error("[personal_bilili]点赞操作失败:", err);
             return `🌸${reply}视频请求失败，请检查日志输出`
         }
     }
@@ -391,7 +391,7 @@ class Bili {
             }
             return json.code === 0 ? `🌸点踩视频成功` : `🌸点踩视频失败:${json.message || json.msg || '未知错误'}`;
         } catch (err) {
-            logger.error("[Bili-Plugin]点踩操作失败:", err);
+            logger.error("[personal_bilili]点踩操作失败:", err);
             return `🌸点踩视频请求失败，请检查日志输出`
         }
     }
@@ -413,7 +413,7 @@ class Bili {
             }
             return json.code === 0 ? `🌸一键三连成功，视频已收藏至默认文件夹` : `🌸一键三连失败:${json.message || json.msg || '未知错误'}`;
         } catch (err) {
-            logger.error("[Bili-Plugin]一键三连操作失败:", err);
+            logger.error("[personal_bilili]一键三连操作失败:", err);
             return `🌸一键三连请求失败，请检查日志输出`
         }
     }
@@ -435,7 +435,7 @@ class Bili {
             }
             return json.code === 0 ? `🌸收藏视频成功，视频已收藏至默认文件夹` : `🌸收藏视频失败:${json.message || json.msg || '未知错误'}`;
         } catch (err) {
-            logger.error("[Bili-Plugin]收藏视频操作失败:", err);
+            logger.error("[personal_bilili]收藏视频操作失败:", err);
             return `🌸收藏视频请求失败，请检查日志输出`
         }
     }
@@ -457,7 +457,7 @@ class Bili {
             }
             return json.code === 0 ? `🌸取消收藏视频成功！` : `🌸取消收藏视频失败:${json.message || json.msg || '未知错误'}`;
         } catch (err) {
-            logger.error("[Bili-Plugin]取消收藏视频操作失败:", err);
+            logger.error("[personal_bilili]取消收藏视频操作失败:", err);
             return `🌸取消收藏视频请求失败，请检查日志输出`
         }
     }
@@ -479,7 +479,7 @@ class Bili {
             }
             return json.code === 0 ? `🌸评论视频成功！` : `🌸评论视频失败:${json.message || json.msg || '未知错误'}`;
         } catch (err) {
-            logger.error("[Bili-Plugin]评论视频操作失败:", err);
+            logger.error("[personal_bilili]评论视频操作失败:", err);
             return `🌸评论视频请求失败，请检查日志输出`
         }
     }
@@ -529,13 +529,13 @@ class Bili {
                     })
                     return keys.key
                 } else {
-                    logger.error(`[Bili-Plugin]获取密钥失败请马上加入群聊联系解禁：${keys.msg}\n${keys.notice}`)
+                    logger.error(`[personal_bilili]获取密钥失败请马上加入群聊联系解禁：${keys.msg}\n${keys.notice}`)
                 }
             } else {
                 return rediskey
             }
         } catch (err) {
-            logger.error("[Bili-Plugin]获取密钥失败", err)
+            logger.error("[personal_bilili]获取密钥失败", err)
             return null
         }
     }
@@ -728,7 +728,7 @@ class Bili {
 
             return results.join("\n");
         } catch (err) {
-            logger.error("[Bili-Plugin]日签分享:", err);
+            logger.error("[personal_bilili]日签分享:", err);
             return "🌸日签分享: 失败(未知错误)";
         }
     }
@@ -782,7 +782,7 @@ class Bili {
             results.push(qqdaily5data.code === 0 ? "🌸心事罐: 成功" : `🌸心事罐: 失败(${qqdaily5data.message || qqdaily5data.msg || '未知错误'})`);
             return results.join("\n");
         } catch (err) {
-            logger.error("[Bili-Plugin]日签卡失败:", err);
+            logger.error("[personal_bilili]日签卡失败:", err);
             return "🌸日签卡: 失败(未知错误)";
         }
     }
@@ -811,7 +811,7 @@ class Bili {
                         })).data.cookies :
                         await Bot[qq].cookies[domain]
                 } catch (err) {
-                    logger.warn(`[Bili-Plugin]第 ${i+1} 次获取账号 ${qq} 的cookies 失败:`, err);
+                    logger.warn(`[personal_bilili]第 ${i+1} 次获取账号 ${qq} 的cookies 失败:`, err);
                     continue;
                 }
                 const parsedCookies = await this.extractCookies(cookiesStr, ['skey', 'p_skey']);
@@ -839,7 +839,7 @@ class Bili {
             };
 
         } catch (err) {
-            logger.error("[Bili-Plugin]获取机器人ck失败:", err);
+            logger.error("[personal_bilili]获取机器人ck失败:", err);
             return {
                 code: -1,
                 uin: qq,
@@ -871,7 +871,7 @@ class Bili {
                 return `===========================\n🌸B站账号『${userCookies.DedeUserID}』在直播间『${roomid}』发送弹幕『${msg}』失败\n失败原因:『${damu.message || damu.msg || '未知错误'}』`;
             }
         } catch (err) {
-            logger.error("[Bili-Plugin]发送弹幕失败", err);
+            logger.error("[personal_bilili]发送弹幕失败", err);
             return `===========================\n🌸B站账号『${userCookies.DedeUserID}』在直播间『${roomid}』发送弹幕『${msg}』失败！！\n失败原因:『请求失败』`;
         }
     }
@@ -915,7 +915,7 @@ class Bili {
 
             return livedata;
         } catch (err) {
-            logger.error("[Bili-Plugin]获取用户关注主播开播状态失败", err);
+            logger.error("[personal_bilili]获取用户关注主播开播状态失败", err);
             return [];
         }
     }
@@ -938,7 +938,7 @@ class Bili {
             }
             return expRet
         } catch (err) {
-            logger.error("[Bili-Plugin]获取经验日志失败", err);
+            logger.error("[personal_bilili]获取经验日志失败", err);
         }
     }
 
@@ -959,7 +959,7 @@ class Bili {
             }
             return web
         } catch (err) {
-            logger.error("[Bili-Plugin]获取用户web端信息失败", err);
+            logger.error("[personal_bilili]获取用户web端信息失败", err);
         }
     }
 
@@ -1070,7 +1070,7 @@ class Bili {
                 infoRet = await BApi.space(userCookies.DedeUserID, userCookies)
             }
         } catch (err) {
-            logger.error('[Bili-Plugin]空间接口请求失败:', err);
+            logger.error('[personal_bilili]空间接口请求失败:', err);
         }
         await this.sleep(250);
         let info2Ret = {
@@ -1090,7 +1090,7 @@ class Bili {
                 info2Ret = await BApi.myinfo2(userCookies)
             }
         } catch (err) {
-            logger.error('[Bili-Plugin]详细信息请求失败:', err);
+            logger.error('[personal_bilili]详细信息请求失败:', err);
         }
         await this.sleep(250);
         let expRet = {
@@ -1108,7 +1108,7 @@ class Bili {
                 expRet = await BApi.exp_log2(userCookies)
             }
         } catch (err) {
-            logger.error('[Bili-Plugin]经验日志请求失败:', err);
+            logger.error('[personal_bilili]经验日志请求失败:', err);
         }
         const card = infoRet.data.card || defaultResponse.data;
         const currentExp = card.level_info?.current_exp || 0;
@@ -1221,7 +1221,7 @@ class Bili {
                     json = await BApi.getFeed(userCookies)
                 }
                 if (json.code !== 0) {
-                    logger.error(`[Bili-Plugin]获取推荐视频未知错误`);
+                    logger.error(`[personal_bilili]获取推荐视频未知错误`);
                     break;
                 }
 
@@ -1247,7 +1247,7 @@ class Bili {
 
                 if (videoData.length >= 5) break;
             } catch (err) {
-                logger.error("[Bili-Plugin]获取视频数据失败:", err);
+                logger.error("[personal_bilili]获取视频数据失败:", err);
             }
             await this.sleep(2000)
         }
@@ -1271,7 +1271,7 @@ class Bili {
             }
             return json.code === 0 ? "🌸投币视频: 成功(10经验)" : `🌸投币视频: 失败(${json.message || '未知错误'})`;
         } catch (err) {
-            logger.error("[Bili-Plugin]投币操作失败:", err);
+            logger.error("[personal_bilili]投币操作失败:", err);
             return "🌸投币视频: 失败(请求错误)";
         }
     }
@@ -1312,7 +1312,7 @@ class Bili {
             logger.mark(logger.cyan(r.msg))
             return r.msg
         } catch (err) {
-            logger.error("[Bili-Plugin]校验出现错误：", err);
+            logger.error("[personal_bilili]校验出现错误：", err);
             return '未知错误'
         }
     }
@@ -1471,7 +1471,7 @@ class Bili {
                 return "🌸分享视频: 失败(请重新登录)";
             }
         } catch (err) {
-            logger.error("[Bili-Plugin]分享操作失败:", err);
+            logger.error("[personal_bilili]分享操作失败:", err);
             return "🌸分享视频: 失败(未知错误)";
         }
     }
@@ -1504,7 +1504,7 @@ class Bili {
                 return json2.code === 0 ? "🌸观看视频: 成功(5经验)" : "🌸观看视频: 失败(请求错误)";
             }
         } catch (err) {
-            logger.error("[Bili-Plugin]观看操作失败:", err);
+            logger.error("[personal_bilili]观看操作失败:", err);
             return "🌸观看视频: 失败(未知错误)";
         }
     }
@@ -1564,7 +1564,7 @@ class Bili {
             }
             return json.code === 0 ? "成功" : `失败(${json.message || json.msg || '未知错误'})`;
         } catch (err) {
-            logger.error("[Bili-Plugin]大会员经验领取失败:", err);
+            logger.error("[personal_bilili]大会员经验领取失败:", err);
             return "失败";
         }
     }
@@ -1598,7 +1598,7 @@ class Bili {
                 }
                 result = json.code === 0 ? "成功" : `失败(${json.message || json.msg || '未知错误'})`;
             } catch (err) {
-                logger.error(`[Bili-Plugin] ${couponTypes[type]} 领取失败:`, err);
+                logger.error(`[personal_bilili] ${couponTypes[type]} 领取失败:`, err);
             }
             couponResults.push({
                 type: couponTypes[type],
@@ -1637,7 +1637,7 @@ class Bili {
                 return `🌸漫画分享: 失败(${json.msg || json.message || '未知错误'})`;
             }
         } catch (err) {
-            logger.error("[Bili-Plugin]漫画分享失败:", err);
+            logger.error("[personal_bilili]漫画分享失败:", err);
             return "🌸漫画分享: 失败(未知错误)";
         }
     }
@@ -1663,7 +1663,7 @@ class Bili {
             }
             return json.code === 0 ? "🌸漫画签到: 成功" : `🌸漫画签到: 失败(${json.message || json.msg || '未知错误'})`;
         } catch (err) {
-            logger.error("[Bili-Plugin]漫画签到失败:", err);
+            logger.error("[personal_bilili]漫画签到失败:", err);
             return "🌸漫画签到: 失败(未知错误)";
         }
     }
