@@ -77,7 +77,7 @@ export class Bililogin extends plugin {
                         }
                     }
                 } catch (error) {
-                    logger.error('[Bili-Plugin]登录错误', error);
+                    logger.error('[personal_bilili]登录错误', error);
                     e.reply(['发生错误，请稍后再试',new Button().bind()])
                     Running[e.user_id] = false
                     return true
@@ -87,7 +87,7 @@ export class Bililogin extends plugin {
             Running[e.user_id] = false
             return true
         } catch (error) {
-            logger.error('[Bili-Plugin]获取二维码报错：', error)
+            logger.error('[personal_bilili]获取二维码报错：', error)
             e.reply('获取二维码失败，请稍后再试', true)
             Running[e.user_id] = false
             return true
@@ -218,7 +218,7 @@ export class Bililogin extends plugin {
                     anyFailure = true;
                 }
             } catch (error) {
-                logger.error("[Bili-Plugin]刷新ck报错:", error);
+                logger.error("[personal_bilili]刷新ck报错:", error);
                 refreshedAccounts.push(`账号 ${DedeUserID} 未知错误，请稍后再试`);
                 anyFailure = true;
             }

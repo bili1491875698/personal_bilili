@@ -39,7 +39,7 @@ export class Bilijx extends plugin {
                 await handler.call(this, e, result.data);
             }
         } catch (error) {
-            logger.info('[Bili-Plugin] 解析出错:', error);
+            logger.info('[personal_bilili] 解析出错:', error);
         }
     }
 

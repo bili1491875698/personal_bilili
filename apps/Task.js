@@ -32,37 +32,37 @@ export class Bilitask extends plugin {
         });
         this.task = [{
                 cron: '50 59 23 * * *',
-                name: '[Bili-Plugin]b站自动删除日志文件',
+                name: '[personal_bilili]b站自动删除日志文件',
                 fnc: () => this.Bilidellog()
             }, {
                 cron: config.livecron,
-                name: '[Bili-Plugin]自动发送弹幕',
+                name: '[personal_bilili]自动发送弹幕',
                 fnc: () => this.autodamu()
             }, {
                 cron: config.QQDaily,
-                name: '[Bili-Plugin]日签打卡',
+                name: '[personal_bilili]日签打卡',
                 fnc: () => this.QQDailysign()
             }, {
                 cron: config.luckywordcron,
-                name: '[Bili-Plugin]幸运字符',
+                name: '[personal_bilili]幸运字符',
                 fnc: () => this.autolukyword()
             }, {
                 cron: config.cron,
-                name: '[Bili-Plugin]',
+                name: '[personal_bilili]',
                 fnc: () => this.auto(),
                 log: false
             }, {
                 cron: config.festivalpush,
-                name: '[Bili-Plugin]自动节日推送',
+                name: '[personal_bilili]自动节日推送',
                 fnc: () => this.autofestival()
             }, {
                 cron: '0 15 * * * ?',
-                name: '[Bili-Plugin]自动校验插件',
+                name: '[personal_bilili]自动校验插件',
                 fnc: () => this.autocheck()
             },
             {
                 cron: '0 0 0/1 * * ?',
-                name: '[Bili-Plugin]整点报时',
+                name: '[personal_bilili]整点报时',
                 fnc: () => this.autobaoshi()
             }
         ]
@@ -77,7 +77,7 @@ export class Bilitask extends plugin {
     async autobaoshi() {
         const configs = await Bili.loadConfig(filePath)
         const rawbaoshigroup = (await Bili.getConfig("baoshigroup", configs)) || []
-        if (rawbaoshigroup.length === 0) return logger.info('[Bili-Plugin]自动节日推送未配置群组，已自动跳过...')
+        if (rawbaoshigroup.length === 0) return logger.info('[personal_bilili]自动节日推送未配置群组，已自动跳过...')
         let groups = [];
         for (const g of rawbaoshigroup) {
             groups.push(Number(g))
@@ -97,7 +97,7 @@ export class Bilitask extends plugin {
     async autofestival() {
         const configs = await Bili.loadConfig(filePath)
         const rawfestivalgroup = (await Bili.getConfig("festivalgroup", configs)) || []
-        if (rawfestivalgroup.length === 0) return logger.info('[Bili-Plugin]自动节日推送未配置群组，已自动跳过...')
+        if (rawfestivalgroup.length === 0) return logger.info('[personal_bilili]自动节日推送未配置群组，已自动跳过...')
         let groups = [];
         for (const g of rawfestivalgroup) {
             groups.push(Number(g))
@@ -255,7 +255,7 @@ export class Bilitask extends plugin {
                     Count2++;
                 }
             } catch (err) {
-                logger.error(`[Bili-Plugin]幸运字符在处理机器人 ${botQQ} 时出错:`, err)
+                logger.error(`[personal_bilili]幸运字符在处理机器人 ${botQQ} 时出错:`, err)
             }
 
             Count++;
@@ -347,7 +347,7 @@ export class Bilitask extends plugin {
 
                 const msg = (await Bili.DailySignCard(qqNum, skey, pskey)).trim()
                 const msg2 = (await Bili.Dailyfriend(qqNum, skey, pskey)).trim()
-                logger.mark(`[Bili-Plugin]日签打卡结果（QQ: ${qqNum}）: ${msg}\n${msg2}`);
+                logger.mark(`[personal_bilili]日签打卡结果（QQ: ${qqNum}）: ${msg}\n${msg2}`);
                 forwardNodes.push({
                     user_id: '80000000',
                     nickname: '匿名消息',
@@ -355,7 +355,7 @@ export class Bilitask extends plugin {
                 })
                 Count++
             } catch (error) {
-                logger.error(`[Bili-Plugin]处理 QQ ${qqNum} 时出错: ${error.message}`);
+                logger.error(`[personal_bilili]处理 QQ ${qqNum} 时出错: ${error.message}`);
                 forwardNodes.push({
                     user_id: '80000000',
                     nickname: '匿名消息',
@@ -405,13 +405,13 @@ export class Bilitask extends plugin {
     async autodamu(e) {
         const cookiesDirPath = path.join('./data/bili');
         if (!fs.existsSync(cookiesDirPath)) {
-            logger.info('[Bili-Plugin] cookie目录不存在');
+            logger.info('[personal_bilili] cookie目录不存在');
             return;
         }
         const files = fs.readdirSync(cookiesDirPath)
             .filter(file => path.extname(file) === '.json')
             .sort(() => Math.random() - 0.5);
-        if (livesendtask) return logger.warn(`[Bili-Plugin]自动弹幕任务进行中，本次自动跳过...`)
+        if (livesendtask) return logger.warn(`[personal_bilili]自动弹幕任务进行中，本次自动跳过...`)
         livesendtask = true
         try {
             for (const file of files) {
@@ -442,7 +442,7 @@ export class Bilitask extends plugin {
                             whitelists = (listData.whitelists || []).map(String);
                             blacklists = (listData.blacklists || []).map(String);
                         } catch (err) {
-                            logger.error(`[Bili-Plugin] 配置文件 ${listPath} 加载失败：`, err);
+                            logger.error(`[personal_bilili] 配置文件 ${listPath} 加载失败：`, err);
                         }
                     }
 
@@ -475,7 +475,7 @@ export class Bilitask extends plugin {
 
                             if (!allowSend) {
                                 messageBuffer.push(reason);
-                                logger.info(`[Bili-Plugin] ${reason}`);
+                                logger.info(`[personal_bilili] ${reason}`);
                                 continue;
                             }
                             try {
@@ -534,14 +534,14 @@ export class Bilitask extends plugin {
                             }
                         }
                     } catch (err) {
-                        logger.error('[Bili-Plugin] 消息发送失败：', err);
+                        logger.error('[personal_bilili] 消息发送失败：', err);
                     }
                 }
                 await Bili.sleep(5000)
             }
             livesendtask = false
         } catch (error) {
-            logger.error('[Bili-Plugin] 自动弹幕任务出错啦', error);
+            logger.error('[personal_bilili] 自动弹幕任务出错啦', error);
             livesendtask = false
         } finally {
             livesendtask = false
@@ -554,7 +554,7 @@ export class Bilitask extends plugin {
 
         try {
             if (!fs.existsSync(dirPath)) {
-                logger.info('[Bili-Plugin]签到日志目录不存在');
+                logger.info('[personal_bilili]签到日志目录不存在');
                 return;
             }
             const files = await new Promise((resolve, reject) => {
@@ -570,7 +570,7 @@ export class Bilitask extends plugin {
             const jsonFiles = files.filter(file => path.extname(file).toLowerCase() === '.json');
 
             if (jsonFiles.length === 0) {
-                logger.warn('[Bili-Plugin]没有找到哔站签到日志文件');
+                logger.warn('[personal_bilili]没有找到哔站签到日志文件');
                 return;
             }
             for (const file of jsonFiles) {
@@ -585,14 +585,14 @@ export class Bilitask extends plugin {
                             }
                         });
                     });
-                    logger.info(`[Bili-Plugin]已删除签到缓存文件 data/bilisign/${file}`);
+                    logger.info(`[personal_bilili]已删除签到缓存文件 data/bilisign/${file}`);
                 } catch (err) {
-                    logger.error(`[Bili-Plugin]无法删除签到缓存文件 ${file}: ${err}`);
+                    logger.error(`[personal_bilili]无法删除签到缓存文件 ${file}: ${err}`);
                 }
             }
-            logger.info('[Bili-Plugin]所有签到缓存文件已删除');
+            logger.info('[personal_bilili]所有签到缓存文件已删除');
         } catch (err) {
-            logger.error(`[Bili-Plugin]无法读取签到缓存目录目录: ${err}`);
+            logger.error(`[personal_bilili]无法读取签到缓存目录目录: ${err}`);
         }
     }
 }

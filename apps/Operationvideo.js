@@ -69,7 +69,7 @@ export class Bilivideoop extends plugin {
             e.reply(["你引用的不是视频啦~不能帮你完成操作惹TAT", new Button().Operate()])
         }
         } catch (err) {
-            logger.error("[Bili-Plugin]视频操作失败：", err)
+            logger.error("[personal_bilili]视频操作失败：", err)
             e.reply("出错惹TAT看看日志吧~",true)
         }
     }
